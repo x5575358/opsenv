@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>xxxxxxxxx |CONTAINER ENV</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="/static/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="/static/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="/static/css/select2_metro.css" />
+	<link rel="stylesheet" href="/static/css/DT_bootstrap.css" />
+		<link href="/static/css/search.css" rel="stylesheet" type="text/css"/>
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="/static/image/favicon.ico" />
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed">
+
+	<!-- BEGIN HEADER -->
+
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+
+		<!-- BEGIN TOP NAVIGATION BAR -->
+
+		<div class="navbar-inner">
+
+			<div class="container-fluid">
+
+				<!-- BEGIN LOGO -->
+
+				<a class="brand" href="{% url 'index' %}">
+
+				<img  style="height: 33px" width="110" src="/static/image/8989.png" alt="logo" />
+
+				</a>
+
+				<!-- END LOGO -->
+
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+				<img src="/static/image/menu-toggler.png" alt="" />
+
+				</a>
+
+				<!-- END RESPONSIVE MENU TOGGLER -->
+
+				<!-- BEGIN TOP NAVIGATION MENU -->
+
+				<ul class="nav pull-right">
+
+
+					<!-- BEGIN USER LOGIN DROPDOWN -->
+
+					<li class="dropdown user">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+						<img alt="" src="/static/image/avatar1_small.jpg" />
+
+						<span class="username">{{request.user}}</span>
+
+						<i class="icon-angle-down"></i>
+
+						</a>
+
+						<ul class="dropdown-menu">
+
+							<li><a  href="{% url 'ouser:ed_passwd' %}"><i class="icon-user"></i> 修改密码</a></li>
+							<li class="divider"></li>
+							<li><a href="/logout/"><i class="icon-key"></i>退出登录</a></li>
+
+						</ul>
+
+					</li>
+
+					<!-- END USER LOGIN DROPDOWN -->
+
+				</ul>
+
+				<!-- END TOP NAVIGATION MENU -->
+
+			</div>
+
+		</div>
+
+		<!-- END TOP NAVIGATION BAR -->
+
+	</div>
+
+	<!-- END HEADER -->
+
+	<!-- BEGIN CONTAINER -->
+
+	<div class="page-container row-fluid">
+
+		<!-- BEGIN SIDEBAR -->
+
+		{% include "navigation.html"%}
+
+		<!-- END SIDEBAR -->
+
+		<!-- BEGIN PAGE -->
+
+		<div class="page-content">
+
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+			<div id="portlet-config" class="modal hide">
+
+				<div class="modal-header">
+
+					<button data-dismiss="modal" class="close" type="button"></button>
+
+					<h3>portlet Settings</h3>
+
+				</div>
+
+				<div class="modal-body">
+
+					<p>Here will be a configuration form</p>
+
+				</div>
+
+			</div>
+
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+			<!-- BEGIN PAGE CONTAINER-->
+
+			<div class="container-fluid">
+
+				<!-- BEGIN PAGE HEADER-->
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+						<h6 class="page-title">
+
+							Container Env List<small></small>
+
+						</h6>
+
+						<ul class="breadcrumb">
+
+							<li>
+
+								<i class="icon-home"></i>
+
+								<a href="{% url 'index' %}">首 页</a>
+
+								<i class="icon-angle-right"></i>
+
+							</li>
+
+							<li>
+
+								<a href="#">容器管理</a>
+
+								<i class="icon-angle-right"></i>
+
+							</li>
+
+							<li><a href="#">环境</a></li>
+
+						</ul>
+
+						<!-- END PAGE TITLE & BREADCRUMB-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE HEADER-->
+
+				<!-- BEGIN PAGE CONTENT-->
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+						<div class="portlet box blue">
+
+							<div class="portlet-title">
+
+								<div class="caption"><i class="icon-edit"></i>列 表</div>
+
+								<div class="tools">
+
+									<a href="javascript:;" class="collapse"></a>
+
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+
+									<a href="javascript:;" class="reload"></a>
+
+									<a href="javascript:;" class="remove"></a>
+
+								</div>
+
+							</div>
+
+							<div class="portlet-body">
+  								<div  class="span8 booking-search" style="width: 100%;">
+									<div class="clearfix">
+										{% if exit_priv.change_containerenv == '0' %}
+										<div class="btn-group">
+											<a href="{% url 'opscont:addenv' %}"><button id="" class="btn green" >新增环境<i class="icon-plus"></i></button></a>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+
+									<thead>
+
+										<tr>
+											<th class="hidden-480" style="vertical-align:middle;text-align:center" >环境名</th>
+											<th class="hidden-480" style="vertical-align:middle;text-align:center" >创建人</th>
+                                            <th class="hidden-480" style="vertical-align:middle;text-align:center">主机列表</th>
+											<th class="hidden-480" style="vertical-align:middle;text-align:center">创建时间</th>
+											<th class="hidden-480" style="vertical-align:middle;text-align:center">修改时间</th>
+												<th class="hidden-480" style="vertical-align:middle;text-align:center">修改</th>
+												<th class="hidden-480" style="vertical-align:middle;text-align:center">删除</th>
+										</tr>
+
+									</thead>
+
+									<tbody>
+          							{% for flag in single_flag %}
+										{% for i in obj_count %}
+											{% for o in data %}
+											{% if i.unique_flag == flag.unique_flag and o.unique_flag == i.unique_flag %}
+												<tr>
+        	                                	{% if i.unique_flag == o.unique_flag and i.times == 1 and o.relation_hostinfo__ip == flag.relation_hostinfo_ip %}
+                    	                                <td style="vertical-align:middle;text-align:center">{{o.name}}</td>
+                	                                    <td style="vertical-align:middle;text-align:center">{{o.create_user}}</td>
+                        	                     {% endif %}
+                            	                 {% if i.unique_flag == o.unique_flag and i.times != 1  and o.relation_hostinfo__ip == flag.relation_hostinfo_ip %}
+                                    	                <td rowspan="{{i.times}}"  style="vertical-align:middle;text-align:center">{{o.name}}</td>
+                                        	            <td rowspan="{{i.times}}"  style="vertical-align:middle;text-align:center">{{o.create_user}}</td>
+                                            	 {% endif %}
+    	                                        <td>{{o.relation_hostinfo__name}}:{{o.relation_hostinfo__ip}}</td>
+            	                                 {% if i.unique_flag == o.unique_flag and i.times == 1 and o.unique_flag == flag.unique_flag %}
+                	                                    <td style="vertical-align:middle;text-align:center">{{o.creation_time| date:"Y-m-d H:i:s" }}</td>
+                    	                                <td style="vertical-align:middle;text-align:center">{{o.update_time| date:"Y-m-d H:i:s" }}</td>
+                        	                            <td style="vertical-align:middle;text-align:center">
+														{% if exit_priv.change_containerenv == '0' %}
+															<a href="{% url 'opscont:editenv' %}?tag={{o.unique_flag}}" class="btn mini yellow"><i class="icon-pencil">　修改</i></a>
+														{% else %}
+															<a class="btn mini yellow"><i class="icon-pencil">　修改</i></a>
+														{% endif %}
+														</td>                                       
+                            	                        <td style="vertical-align:middle;text-align:center">
+                                                        {% if exit_priv.delete_containerenv == '0' %}
+															<a class="btn mini blue" onclick="PostData(this.id) "dest_url="{% url 'opscont:delenv' %}" id="{{i.unique_flag}}" tag="{{o.unique_flag}}" >
+																<i class="icon-trash">　删除</i>
+															</a>
+                              							{% else %}
+															<a class="btn mini blue" >
+                                                                <i class="icon-trash">　删除</i>
+                                                            </a>
+														{% endif %}
+														</td>
+                                    	          {% endif %}
+                                        	      {% if i.unique_flag == o.unique_flag and i.times != 1 and o.relation_hostinfo__ip == flag.relation_hostinfo_ip %}
+                                            	        <td rowspan="{{i.times}}"  style="vertical-align:middle;text-align:center">{{o.creation_time| date:"Y-m-d H:i:s" }}</td>
+                                                	    <td rowspan="{{i.times}}"  style="vertical-align:middle;text-align:center">{{o.update_time| date:"Y-m-d H:i:s" }}</td>
+                                                    	<td rowspan="{{i.times}}"  style="vertical-align:middle;text-align:center">
+														{% if exit_priv.change_containerenv == '0' %}
+															<a href="{% url 'opscont:editenv' %}?tag={{o.unique_flag}}" class="btn mini yellow"><i class="icon-pencil">　修改</i></a>
+														{% else %}
+															<a class="btn mini yellow"><i class="icon-pencil">　修改</i></a>
+														{% endif %}
+														</td>
+	                                                    <td rowspan="{{i.times}}"  style="vertical-align:middle;text-align:center">
+														{% if exit_priv.delete_containerenv == '0' %}
+															<a class="btn mini blue" onclick="PostData(this.id) "dest_url="{% url 'opscont:delenv' %}" id="{{i.unique_flag}}" tag="{{o.unique_flag}}">
+																<i class="icon-trash">　删除</i>
+															</a>
+														{% else %}
+                                                            <a class="btn mini blue" >
+                                                                <i class="icon-trash">　删除</i>
+                                                            </a>
+														{% endif %}
+														</td>
+        	                                       {% endif %}
+    	                                      	   </tr>
+											{% endif %}
+											{% endfor %}
+										{% endfor %}
+									{% endfor %}
+									</tbody>
+
+								</table>
+
+							</div>
+
+						
+
+						<!-- END EXAMPLE TABLE PORTLET-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE CONTENT -->
+
+			</div>
+
+			<!-- END PAGE CONTAINER-->
+
+		</div>
+
+		<!-- END PAGE -->
+
+	</div>
+
+	<!-- END CONTAINER -->
+
+	<!-- BEGIN FOOTER -->
+    {% include "footer.html"%}
+
+
+<!-- END FOOTER -->
+<script src="/static/js/search.js"></script>
+	<!-- BEGIN CORE PLUGINS -->
+	<script src="/static/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="/static/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+	<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+	<script src="/static/js/excanvas.min.js"></script>
+	<script src="/static/js/respond.min.js"></script>
+	<![endif]-->
+	<script src="/static/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.blockui.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="/static/js/jquery.uniform.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="/static/js/select2.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="/static/js/DT_bootstrap.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="/static/js/app.js"></script>
+	<script src="/static/js/table-editable.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+		   App.init();
+		   TableEditable.init();
+		   		   Search.init();
+		});
+	</script>
+	<script>
+		function PostData(value){
+			var header_handle = document.getElementById(value)
+			var url_head = header_handle.getAttribute("dest_url")
+			var tag = header_handle.getAttribute("tag")
+			console.log(tag)
+			$.ajax({
+                url: `${url_head}`,
+                data: { 'tag':`${JSON.stringify(tag)}`},
+                type: "post",
+                dataType: 'json',
+                success: function(res){
+                	location.href=res.data
+                   }
+                })
+		}
+	</script>
+
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
+<!-- END BODY -->
+</html>

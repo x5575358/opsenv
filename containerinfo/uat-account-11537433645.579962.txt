@@ -1,0 +1,2 @@
+reg.xxxxxx.net/preprod/account-service:557ba45a
+reg.xxxxxx.net/preprod/account:b0913529

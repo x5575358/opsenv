@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
+<!-- BEGIN HEAD -->
+
+<head>
+
+	<meta charset="utf-8" />
+
+	<title>xxxxxxxxx | Dashboard</title>
+
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<meta content="" name="description" />
+
+	<meta content="" name="author" />
+
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/style-metro.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+	<link href="/static/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+
+	<!-- END GLOBAL MANDATORY STYLES -->
+
+	<!-- BEGIN PAGE LEVEL STYLES -->
+
+	<link href="/static/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/daterangepicker.css" rel="stylesheet" type="text/css" />
+
+	<link href="/static/css/fullcalendar.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/static/css/jqvmap.css" rel="stylesheet" type="text/css" media="screen"/>
+
+	<link href="/static/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+
+	<!-- END PAGE LEVEL STYLES -->
+
+
+	<link rel="shortcut icon" href="/static/image/favicon.ico" />
+
+</head>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed" >
+
+	<!-- BEGIN HEADER -->
+
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+
+		<!-- BEGIN TOP NAVIGATION BAR -->
+
+		<div class="navbar-inner">
+
+			<div class="container-fluid">
+
+				<!-- BEGIN LOGO -->
+
+				<a class="brand" href="index.html">
+
+				<img style="height: 33px" width="110"  src="/static/image/8989.png" alt="logo"/>
+
+				</a>
+
+				<!-- END LOGO -->
+
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+				<img src="/static/image/menu-toggler.png" alt="" />
+
+				</a>
+
+				<!-- END RESPONSIVE MENU TOGGLER -->
+
+				<!-- BEGIN TOP NAVIGATION MENU -->
+
+				<ul class="nav pull-right">
+
+					<!-- BEGIN USER LOGIN DROPDOWN -->
+
+					<li class="dropdown user">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+						<img alt="" src="/static/image/avatar1_small.jpg" />
+							<!--<img alt="" src="/static/image/user01.jpg" />-->
+
+						<span class="username">{{request.user}}</span>
+
+						<i class="icon-angle-down"></i>
+
+						</a>
+
+						<ul class="dropdown-menu">
+
+							<li><a  href="{% url 'ouser:ed_passwd' %}"><i class="icon-user"></i> 修改密码</a></li>
+
+							<li class="divider"></li>
+
+							<li><a href="/logout/"><i class="icon-key"></i>退出登录</a></li>
+
+						</ul>
+
+					</li>
+
+					<!-- END USER LOGIN DROPDOWN -->
+
+				</ul>
+
+				<!-- END TOP NAVIGATION MENU -->
+
+			</div>
+
+		</div>
+
+		<!-- END TOP NAVIGATION BAR -->
+
+	</div>
+
+	<!-- END HEADER -->
+
+	<!-- BEGIN CONTAINER -->
+
+	<div class="page-container">
+
+		<!-- BEGIN SIDEBAR -->
+
+		{% include "navigation.html"%}
+
+		<!-- END SIDEBAR -->
+
+		<!-- BEGIN PAGE -->
+
+		<div class="page-content">
+
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+			<div id="portlet-config" class="modal hide">
+
+				<div class="modal-header">
+
+					<button data-dismiss="modal" class="close" type="button"></button>
+
+					<h3>Widget Settings</h3>
+
+				</div>
+
+				<div class="modal-body">
+
+					Widget settings form goes here
+
+				</div>
+
+			</div>
+
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+
+			<!-- BEGIN PAGE CONTAINER-->
+
+			<div class="container-fluid">
+
+				<!-- BEGIN PAGE HEADER-->
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+
+
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+
+						<h3 class="page-title">
+
+							Info <small>statistics and more</small>
+
+						</h3>
+
+						<ul class="breadcrumb">
+
+							<li>
+
+								<i class="icon-home"></i>
+
+								<a href="index.html">首页</a>
+
+								<i class="icon-angle-right"></i>
+
+							</li>
+
+							<li><a href="#">信息展现</a></li>
+
+						</ul>
+
+						<!-- END PAGE TITLE & BREADCRUMB-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE HEADER-->
+
+				<div id="dashboard">
+
+                        <div class="clearfix"></div>
+<!--						<div class="portlet box grey">-->
+							<div class="">
+							<div class="portlet-body">
+
+								<div class="row-fluid visible-ie8">
+
+									<div class="span12">
+
+										<span class="label label-important">NOTE:</span>
+
+										The Circle Dial plugin is not compatible with Internet Explorer 8 and older.
+
+									</div>
+
+								</div>
+
+
+                            </div>
+
+							</div>
+
+						</div>
+
+
+					<div class="clearfix"></div>
+					
+					<!-- BEGIN ec2 region-->
+					<div class="row-fluid"> 
+						<div class="span6">
+							<!-- BEGIN PORTLET-->
+							<div class="portlet solid bordered light-grey">
+								<div class="portlet-body">
+									<div id="ec2_region_count" style="min-width:300px;height:300px">	</div>
+								</div>
+							</div>
+							<!-- END PORTLET-->
+						</div>
+						<div class="span6">
+							<!-- BEGIN PORTLET-->
+							<div class="portlet solid bordered light-grey">
+								<div class="portlet-body">
+									<div id="horizontal_stack_maps_1" style="min-width:300px;height:300px">	</div>
+								</div>
+							</div>
+							<!-- END PORTLET-->
+						</div>
+					</div>
+				<!-- END Firstpicture-->
+						<!--</div>-->
+
+						<!-- END PORTLET-->
+						<div class="clearfix"></div>
+					<!-- BEGIN Firstpicture-->
+					<div class="row-fluid">
+						<div class="span6">
+							<!-- BEGIN PORTLET-->
+							<div class="portlet solid bordered light-grey">
+								<div class="portlet-body">
+									<div id="container" style="min-width:300px;height:300px">	</div>
+								</div>
+							</div>
+							<!-- END PORTLET-->
+						</div>
+						<div class="span6">
+							<!-- BEGIN PORTLET-->
+							<div class="portlet solid bordered light-grey">
+								<div class="portlet-body">
+									<div id="visitor" style="min-width:300px;height:300px">	</div>
+								</div>
+							</div>
+							<!-- END PORTLET-->
+						</div>
+					</div>
+				<!-- END Firstpicture-->
+
+
+					<!--</div>-->
+
+					<div class="clearfix"></div>
+					<!-- BEGIN roundness-->
+					<div class="row-fluid">
+						<div class="span6">
+							<!-- BEGIN PORTLET-->
+							<div class="portlet solid bordered light-grey">
+								<div class="portlet-body">
+									<div id="roundness_id" style="min-width:300px;height:300px">	</div>
+								</div>
+							</div>
+							<!-- END PORTLET-->
+						</div>
+					</div>
+				<!-- END roundness-->
+					
+
+
+				</div>
+
+			</div>
+
+			<!-- END PAGE CONTAINER-->
+
+		</div>
+
+		<!-- END PAGE -->
+
+	</div>
+
+	<!-- END CONTAINER -->
+
+	<!-- BEGIN FOOTER -->
+
+
+{% include "footer.html"%}
+
+    <!-- END FOOTER -->
+
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+	<!-- BEGIN CORE PLUGINS -->
+
+	<script src="/static/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+	<script src="/static/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+
+	<script src="/static/js/excanvas.min.js"></script>
+
+	<script src="/static/js/respond.min.js"></script>
+
+	<![endif]-->
+
+	<script src="/static/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.blockui.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<!-- END CORE PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+	<script src="/static/js/jquery.vmap.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.vmap.russia.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.vmap.world.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.vmap.europe.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.vmap.germany.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.vmap.usa.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.flot.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.flot.resize.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.pulsate.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/date.js" type="text/javascript"></script>
+
+	<script src="/static/js/daterangepicker.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.gritter.js" type="text/javascript"></script>
+
+	<script src="/static/js/fullcalendar.min.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
+
+	<script src="/static/js/jquery.sparkline.min.js" type="text/javascript"></script>
+
+
+
+	<!-- END PAGE LEVEL PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+	<script src="/static/js/app.js" type="text/javascript"></script>
+
+	<script src="/static/js/index.js" type="text/javascript"></script>
+    <script src="/static/js/ui-sliders.js"></script>
+
+
+
+	<!-- END PAGE LEVEL SCRIPTS -->
+
+	<script>
+
+		jQuery(document).ready(function() {
+
+		   App.init(); // initlayout and core plugins
+
+		   Index.init();
+
+		   Index.initJQVMAP(); // init index page's custom scripts
+
+		   Index.initCalendar(); // init index page's custom scripts
+
+		   Index.initCharts(); // init index page's custom scripts
+
+		   Index.initChat();
+
+		   Index.initMiniCharts();
+
+		   Index.initDashboardDaterange();
+		   UISliders.initSliders();
+		   UISliders.initKnowElements();
+
+
+		   <!--Index.initIntro();-->
+
+		});
+
+	</script>
+	
+
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script src="/static/js/jquery.knob.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="/static/js/ui-sliders.js"></script>
+
+
+	<!-- END JAVASCRIPTS -->
+	
+	<script src="/static/js/highcharts.js"></script>
+    <script src="/static/js/exporting.js"></script>
+	<script src="/static/js/drilldown.js"></script>
+	<script src="/static/js/highcharts-zh_CN.js"></script>
+    <script src="/static/js/grid-light.js"></script>
+	<script>
+    var chart = Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: '集群、仓库、容器、标签'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45  // 设置轴标签旋转角度
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '数目 (个)'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: '服务数目: <b>{point.y:.1f} 个</b>'
+    },
+    series: [{
+        name: '总台数',
+        data: [
+        	['集群数', 8],
+            ['项目', {{project_count|safe}}],
+            ['仓库', {{warehous_count.repo_count__sum|safe}}],
+            ['镜像标签',{{tags_count.tags_count__sum|safe}}]
+        ],
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y}', // :.1f 为保留 1 位小数
+            y: 10
+        	}
+   		 }]
+	});
+</script>
+<script>
+    var chart = Highcharts.chart('visitor', {
+    chart: {
+        type: 'areaspline'
+    },
+    title: {
+        text: '一周访问排名前五的用户图'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 150,
+        y: 100,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    xAxis: {
+        categories: {{x_axis|safe}},
+        plotBands: [{ // 标识出周末
+            from: 4.5,
+            to: 6.5,
+            color: 'rgba(68, 170, 213, .2)'
+        }]
+    },
+    yAxis: {
+        title: {
+            text: '访问次数'
+        }
+    },
+    tooltip: {
+        shared: true,
+        valueSuffix: ' 次'
+    },
+    plotOptions: {
+        areaspline: {
+            fillOpacity: 0.5
+        }
+    },
+    series: {{y_axis|safe}}
+	});
+</script>
+
+<script>
+var chart = Highcharts.chart('ec2_region_count', {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '资源信息统计图'
+	},
+	xAxis: {
+		categories: ['ec2', 'alb', 'rds'] 
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: '资源信息总量'
+		},
+		stackLabels: {  // 堆叠数据标签
+			enabled: true,
+			style: {
+				fontWeight: 'bold',
+				color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+			}
+		}
+	},
+	legend: {
+		align: 'right',
+		x: -30,
+		verticalAlign: 'top',
+		y: 25,
+		floating: true,
+		backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+		borderColor: '#CCC',
+		borderWidth: 1,
+		shadow: false
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.x + '</b><br/>' +
+				this.series.name + ': ' + this.y + '<br/>' +
+				'总量: ' + this.point.stackTotal;
+		}
+	},
+	plotOptions: {
+		column: {
+			stacking: 'normal',
+			dataLabels: {
+				enabled: true,
+				color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+				style: {
+					// 如果不需要数据标签阴影，可以将 textOutline 设置为 'none'
+					textOutline: '1px 1px black'
+				}
+			}
+		}
+	},
+	series: {{resource_data_count|safe}}
+});
+</script>
+
+<script>
+var chart = Highcharts.chart('horizontal_stack_maps', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: '资源信息类型统计'
+    },
+    subtitle: {
+        text: '数据来源: aws'
+    },
+    xAxis: {
+        categories: ['Ec2'],
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '数量 (台)',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' 台'
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true,
+                allowOverlap: true // 允许数据标签重叠
+            }
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 100,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: true
+    },
+    series: {{ec2_type_data_list|safe}}
+});
+
+</script>
+
+<script>
+Highcharts.chart('horizontal_stack_maps_1', {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: '资源统计Ec2实例规格Top10'
+	},
+	subtitle: {
+		text: '数据来源: aws'
+	},
+	xAxis: {
+		type: 'category'
+	},
+	yAxis: {
+		title: {
+			text: 'Ec2实例规格'
+		}
+	},
+	legend: {
+		enabled: false
+	},
+	plotOptions: {
+		series: {
+			borderWidth: 0,
+			dataLabels: {
+				enabled: true,
+				format: '{point.y}'
+			}
+		}
+	},
+	tooltip: {
+		headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+		pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}台</b><br/>'
+	},
+	series: [{
+		name: 'Ec2实例规格',
+		colorByPoint: true,
+		data: {{ec2_picture_data|safe}}
+	}]
+});
+</script>
+<script>
+// Build the chart
+Highcharts.chart('roundness_id', {
+	chart: {
+		plotBackgroundColor: null,
+		plotBorderWidth: null,
+		plotShadow: false,
+		type: 'pie'
+	},
+	title: {
+		text: 'Ec2资源环境分布'
+	},
+		tooltip: {
+		pointFormat: '{series.name}: <b>{point.y}</b>'
+	},
+	plotOptions: {  pie: {
+		allowPointSelect: true,
+		dataLabels: {
+			enabled: true,
+                        distance: 60,
+			formatter: function() {
+				return '<span style="color: ' + this.point.color +'"> 数量为:  ' + this.y+ '<br> 占比: ' + Highcharts.numberFormat(this.percentage,2) + '%</span>';
+			}
+		}
+		   ,showInLegend: true
+	}},
+             legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                }
+	    ,
+	series: [{
+		name: '台数',
+		colorByPoint: true,
+		data: {{ec2_env_list|safe}},
+	}]
+});
+</script>
+</html>
+

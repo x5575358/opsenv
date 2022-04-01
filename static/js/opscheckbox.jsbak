@@ -1,0 +1,36 @@
+
+		function swapCheck(value) {
+			if (value) {
+				$("input[type=checkbox]").each(function(){
+					// $(item).removeProp('checked');
+					// $(item).prop("checked", true);
+					// console.log("----true--------");
+					$.uniform.update($(this).prop("checked",true))
+				})
+			} else {
+				$("input[type=checkbox]").each(function() {
+					$.uniform.update($(this).prop("checked",false))
+				});
+		}
+	}
+		function releaseCheck(){
+			    var list = []
+			    var url_head = document.getElementById("opscheckbox").getAttribute('value')
+            $('.list-checkbox').each(function(index, item) {
+                if($(this).prop('checked')) {
+                    list.push($(this).val())
+                }
+            })
+            if (list.length != 0){
+                let url=`${url_head}?exec_id=${JSON.stringify(list)}`
+    //            let url = `http://127.0.0.1:8000/release/release_exec?id=${JSON.stringify(list)}`
+                console.log(url)
+                $.get(url, null, function(res){
+                    console.log(res)
+                //    if (res.msg === '200') {
+                  //      window.location.reload();
+                   // }
+                })
+                }
+        }
+

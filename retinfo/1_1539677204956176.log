@@ -1,0 +1,22 @@
+172.29.86.143 | SUCCESS | rc=0 >>
+The push refers to repository [reg.xxxxxx.net/prod/flutterwave]
+af040489b40b: Preparing
+575880bfe258: Preparing
+0e6d374bef4b: Preparing
+6a9f05efca50: Preparing
+647084eb1ff2: Preparing
+3c198acf3259: Preparing
+f6f467c66dea: Preparing
+cd7100a72410: Preparing
+f6f467c66dea: Waiting
+cd7100a72410: Waiting
+3c198acf3259: Waiting
+6a9f05efca50: Layer already exists
+647084eb1ff2: Layer already exists
+3c198acf3259: Layer already exists
+f6f467c66dea: Layer already exists
+af040489b40b: Mounted from preprod/flutterwave
+0e6d374bef4b: Mounted from preprod/flutterwave
+cd7100a72410: Layer already exists
+575880bfe258: Mounted from preprod/flutterwave
+test: digest: sha256:8e7d072fb76113f8b42dae36f455b69b0f50f3c77898aaaa0b7beb5bc7fe5bf6 size: 2001

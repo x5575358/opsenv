@@ -1,0 +1,379 @@
+<link href="/static/css/demo.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="/static/css/iconfont.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<div class="page-sidebar nav-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<ul class="page-sidebar-menu">
+				<li>
+				<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					<div class="sidebar-toggler hidden-phone"></div>
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+				</li>
+				
+				<li>
+					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+					<form class="sidebar-search">
+						<div class="input-box">
+							<a href="javascript:;" class="remove"></a>
+							<input type="text" placeholder="Search..." />
+							<input type="button" class="submit" value=" " />
+						</div>
+					</form>
+					<!-- END RESPONSIVE QUICK SEARCH FORM -->
+				</li>
+
+				<li class="start ">
+					<a href="{% url 'index' %}">
+					<i class="iconfont">&#xe626;</i>
+					<span class="title">首 &nbsp;页</span>
+					</a>
+				</li>
+
+				<!--用户管理start-->
+ 				{% if exit_priv.scanf_user == '0' or  exit_priv.scanf_group == '0' %}           
+					<li class="">
+						<a href="javascript:;">
+							<!--icon-bookmark-empty-->
+						<i class="iconfont">&#xe631;</i>
+						<span class="title">用户管理</span>
+						<span class="arrow "></span>
+						</a>
+						
+						<ul class="sub-menu">
+							{% if  exit_priv.scanf_user == '0' %}<li><a href="/user/user_list/"><i class="iconfont">&#xe6c4;</i> 用户<span class="arrow"></span></a></li>{% endif %}
+							{% if  exit_priv.scanf_group == '0' %}<li ><a href="/user/group/"><i class="iconfont">&#xe63b;</i> 用户组户<span class="arrow"></a></li>{% endif %}
+						</ul>
+					</li>
+				{% endif %}
+				<!--资产管理start-->
+				{% if exit_priv.scanf_ec2 == '0' %}
+					<li class="">
+						<a href="javascript:;">
+						<i class="iconfont">&#xe675;</i>
+						<span class="title">资源信息</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+						{% if exit_priv.scanf_ec2 == '0' %}
+							<li>
+								<a href="/asset/list/"><i class="iconfont">&#xe62d;</i> EC2
+								<span class="arrow"></span>
+								</a>
+							</li>
+						{% endif %}
+                        			{% if exit_priv.scanf_elbloadbalancers == '0' %}
+			                            	<li>
+                                				<a href="{% url 'asset:albinfolist' %}"><i class="iconfont">&#xe65e;</i> Alb
+				                                	<span class="arrow"></span>
+                                				</a>
+                            				</li>
+                            			{% endif %}
+                            			{% if exit_priv.scanf_rdsbasicinfo == '0' %}
+                            				<li>
+                                				<a href="{% url 'asset:rdsinfolist' %}"><i class="iconfont">&#xe64b;</i> Rds
+                               					 <span class="arrow"></span>
+                                				</a>
+                            				</li>
+        		                    	{% endif %}
+	
+						</ul>
+					</li>
+				{% endif %}
+				<!--资产管理end-->
+
+				<!--持续集成start-->
+                {% if exit_priv.scanf_mirrotag == '0' or exit_priv.scanf_warehouse == '0' or exit_priv.scanf_projectinfo == '0' or exit_priv.scanf_usergitlabcommit == '0' or exit_priv.scanf_jenkinsbuild == '0' %}
+
+				<li>
+					<a class="active" href="javascript:;">
+					<i class="iconfont">&#xe63d;</i> 
+					<span class="title">持续集成</span>
+					<span class="arrow "></span>
+					</a>
+
+					<ul class="sub-menu">
+		                        {% if exit_priv.scanf_usergitlabcommit == '0' %}
+						<li>
+							<a href="javascript:;"><i class="iconfont">&#xe674;</i>
+							Gitlab
+							<span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="{% url  'cdeployment:gitlabrecord' %}"><i class="iconfont">&#xe638;</i> 代码提交</a></li>
+				                                <li><a href="{% url  'cdeployment:gitlabconfigrecord' %}"><i class="iconfont">&#xe638;</i> 配置修改</a></li>
+							</ul>
+						</li>
+					{% endif %}
+					{% if exit_priv.scanf_jenkinsbuild == '0' %}
+						<li>
+							<a href="javascript:;"><i class="iconfont">&#xe629;</i>
+							Jenkins
+							<span class="arrow"></span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="{% url 'cdeployment:buildlist' %}"><i class="iconfont">&#xe659;</i> 代码构建</a></li>
+							</ul>
+							<ul class="sub-menu">
+								<li><a href="{% url 'cdeployment:buildsucess' %}"><i class="iconfont">&#xe683;</i> 构建发布</a></li>
+							</ul>
+						</li>
+					{% endif %}
+				<!--镜像管理start-->
+				{% if exit_priv.scanf_mirrotag == '0' or exit_priv.scanf_warehouse == '0' or exit_priv.scanf_projectinfo == '0' %}
+					<li class="">
+						<a href="javascript:;">
+						<i class="iconfont">&#xe654;</i>
+						<span class="title">Harbor</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							{% if exit_priv.scanf_projectinfo == '0' %}
+								<li ><a href=/mirror/project/><i class="iconfont">&#xe619;</i> 项目</a></li>
+							{% endif %}
+							{% if exit_priv.scanf_warehouse == '0' %}
+								<li ><a href=/mirror/warehouse/><i class="iconfont">&#xe66c;</i> 镜像仓库</a></li>
+							{% endif %}
+							{% if exit_priv.scanf_mirrotag == '0' %}
+								<li ><a href=/mirror/tags_list/><i class="iconfont">&#xe618;</i> 镜像标签</a></li>
+							{% endif %}
+						</ul>
+					</li>
+				{% endif %}
+				<!--镜像管理end-->
+				<!--报表管理start-->
+                    <li class="">
+                        <a href="javascript:;">
+                        <i class="iconfont">&#xe8a5;</i>
+                        <span class="title">Report</span>
+                        <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                                <li ><a href="{% url 'asset:ec2usedlist' %}"><i class="iconfont">&#xe61a;</i> EC2资源消耗
+                                <span class="arrow"></span>
+                                </a>
+								</li >
+                        </ul>
+                    </li>
+				<!--报表管理end-->
+
+					</ul>
+				</li>
+				{% endif %}
+				<!--持续集成end-->
+				
+				<!--容器管理start-->
+				 {% if exit_priv.scanf_containerdist == '0' or exit_priv.scanf_containerenv == '0' or exit_priv.scanf_containerenvgroup == '0' %}
+					<li class="">
+						<a href="javascript:;">
+							<i class="iconfont">&#xe64c;</i>
+							<span class="title">容器管理</span>
+							<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+						{% if exit_priv.scanf_containerenv == '0' %}
+							<li ><a href="{% url 'opscont:envlist' %}"><i class="iconfont">&#xe941;</i> 环境 <span class="arrow "></span></a></li>
+						{% endif %}
+						{% if exit_priv.scanf_containerenvgroup == '0' %}
+							<li ><a href="{% url 'opscont:genvlist' %}"><i class="iconfont">&#xe9c9;</i> 环境组 <span class="arrow "></span></a></li>
+						{% endif %}
+						{% if exit_priv.scanf_containerdist == '0' %}
+							<li ><a href="{% url 'opscont:hostunit' %}"><i class="iconfont">&#xe6bf;</i> 容器分布 <span class="arrow "></span></a></li>	
+						{% endif %}
+						</ul>
+					</li>
+				{% endif %}
+				<!--容器管理end-->
+				
+				<!--发布管理start-->
+				{% if  exit_priv.scanf_asyncrecord == '0' or exit_priv.scanf_hostinfo == '0' or exit_priv.scanf_taskinfo == '0' or  exit_priv.scanf_contrastresult == '0' %}
+					<li class="">
+						<a href="javascript:;">
+						<i class="iconfont">&#xe647;</i>
+						<span class="title">发布管理</span>
+						<span class="arrow open"></span>
+						</a>
+						<ul class="sub-menu" >
+						{% if exit_priv.scanf_contrastresult == '0' %}
+							<li><a href="/release/get_difference_container/"><i class="iconfont">&#xe62a;</i> 对比容器</a></li>
+						{% endif %}
+						{% if exit_priv.scanf_hostinfo == '0' %}
+							<li><a href="/release/hosts_list/"><i class="iconfont">&#xe51c;</i> hosts列表</a></li>
+						{% endif %}
+						{% if exit_priv.scanf_taskinfo == '0' %}
+							<li><a href="/release/task_list/"><i class="iconfont">&#xe633;</i> 任务发布</a></li>
+						{% endif %}
+						{% if exit_priv.scanf_asyncrecord == '0' %}
+							<li><a href="/release/history_task_list/"><i class="iconfont">&#xe6db;</i> 历史发布</a></li>
+						{% endif %}
+
+						</ul>
+					</li>
+				{% endif %}
+				<!--发布管理end-->
+
+				<!--变更管理start-->
+				{% if exit_priv.scanf_changerecorder == '0' %}
+					<li class="">
+						<a href="javascript:;">
+						<i class="iconfont">&#xe61d;</i>
+						<span class="title">变更管理</span>
+						<span class="arrow "></span>
+						</a>
+						<ul class="sub-menu">
+							<li>
+<!--								<a href="javascript:;">
+									<i class="icon-cogs"></i>
+									变更申请
+									<span class="arrow"></span>
+								</a>
+--!>
+<!--								<ul class="sub-menu">
+									<li>
+--!>
+										<a href="{% url 'mchange:mchange_list'%}">
+											<i class="iconfont">&#xe6ec;</i>
+												封版、发布
+											<span class="arrow"></span>
+										</a>
+									<a href="{% url 'mchange:mchange_apply_list'%}">
+									<i class="iconfont">&#xe662;</i>
+									变更申请
+									<span class="arrow"></span>
+									</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
+				<!--变更管理end-->
+				<!--工具管理start-->
+				{% if exit_priv.scanf_runcontainer == '0'  or exit_priv.add_scriptgrouprelease == '0' %}
+					<li>
+						<a href="javascript:;">
+							<i class="iconfont">&#xe6ba;</i>
+							<span class="title">工具管理</span>
+							<span class="arrow "></span>
+						</a>
+	
+						<ul class="sub-menu">
+							<li>
+								<a href="{% url 'opstools:tools'%}">
+									<i class="iconfont">&#xe6cd;</i>
+									工具列表
+									<span class="arrow"></span>
+								</a>
+							</li>
+                        {% if exit_priv.scanf_uploadfiles == '0' %}
+							<li>
+									<a href="{% url 'opstools:upfile'%}">
+									<i class="iconfont">&#xe6f4;</i>
+									脚本上传
+									<span class="arrow"></span>
+									</a>
+						</li>
+                       {% endif %}
+					   {% if exit_priv.scanf_scriptgroup == '0' %}
+							<li>
+								<a href="{% url 'opstools:scriptgroup'%}"><i class="iconfont">&#xe676;</i>脚本封装<span class="arrow"></span></a>
+							</li>
+						{% endif %}
+						</ul>
+					</li>
+				{% endif %}
+				<!--工具管理end-->
+
+				<!--审计管理start-->
+				{% if exit_priv.scanf_log == '0' or exit_priv.scanf_loginrecorder == '0' or exit_priv.scanf_asyncoperationaudit == '0' or exit_priv.scanf_asyncfileinfo == '0' or exit_priv.scanf_scriptgrouprelease == '0' %}
+					<li class="">
+						<a href="javascript:;">
+						<i class="iconfont">&#xe61f;</i>
+						<span class="title">审计管理</span>
+						<span class="selected"></span>
+						<span class=""></span>
+						</a>
+						<ul class="sub-menu">
+							{% if exit_priv.scanf_loginrecorder == '0' %}
+	      						<li>
+		   					   	    <a href="{% url 'log:login_log' %}">
+									<i class="iconfont">&#xe620;</i>
+									<span class="arrow"></span>登陆日志</a>
+   							    </li>
+							{% endif %}
+							{% if exit_priv.scanf_log == '0' %}
+	   							<li >
+									<a href="/log/list/">
+									<i class="iconfont">&#xe6be;</i>
+									<span class="arrow"></span>操作日志</a>
+								</li>
+							{% endif %}
+							{% if exit_priv.scanf_asyncoperationaudit == '0' %}
+								<li >
+									<a href="{% url "log:async" %}">
+									<i class="iconfont">&#xe642;</i>
+								    <span class="arrow"></span>异步日志</a>
+								</li>
+							{% endif %}
+							{% if exit_priv.scanf_asyncfileinfo == '0' %}
+							    <li>
+								    <a href="{% url 'log:toolslog' %}">
+									<i class="iconfont">&#xe624;</i>
+								    <span class="arrow"></span>重启日志</a>
+    							</li>
+							{% endif %}
+							{% if exit_priv.scanf_scriptgrouprelease == '0' %}
+							    <li>
+								    <a href="{% url 'log:excescriptgroup' %}">
+									<i class="iconfont">&#xe611;</i>
+								    <span class="arrow"></span>脚本日志</a>
+	    						</li>
+							{% endif %}
+						</ul>
+					</li>
+				{% endif %}
+			</ul>
+
+			<!-- END SIDEBAR MENU -->
+
+		</div>
+
+<script>
+  window.onload = function () {
+    console.log(document.querySelectorAll('a')[4].href)
+    var arr = document.querySelectorAll('a')
+    for (var i = 0; i < arr.length; i++) {
+    	removeClass(arr[i].parentNode, 'active')
+      if (arr[i].href === location.href) {
+        addClass(arr[i].parentNode, 'active')
+        checkParentNode(arr[i].parentNode.parentNode)
+      }
+    }
+
+    /********************************************/
+    function checkParentNode(elem) {
+      if (hasClass(elem, 'sub-menu')) {
+        addClass(elem.parentNode, 'active')
+        checkParentNode(elem.parentNode.parentNode)
+      }
+    }
+    function hasClass (elem, cls) {
+      cls = cls || ''
+      if (cls.replace(/\s/g, '').length === 0) return false // 当cls没有参数时，返回false
+      return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ')
+    }
+
+    function addClass (ele, cls) {
+      if (!hasClass(ele, cls)) {
+        ele.className = ele.className === '' ? cls : ele.className + ' ' + cls
+      }
+    }
+
+    function removeClass (ele, cls) {
+      if (hasClass(ele, cls)) {
+        let newClass = ' ' + ele.className.replace(/[\t\r\n]/g, '') + ' '
+        while (newClass.indexOf(' ' + cls + ' ') >= 0) {
+          newClass = newClass.replace(' ' + cls + ' ', ' ')
+        }
+        ele.className = newClass.replace(/^\s+|\s+$/g, '')
+      }
+    }
+  }
+</script>

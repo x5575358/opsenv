@@ -1,0 +1,3 @@
+reg.xxxxxx.net/preprod/validator:e6d0dce7
+reg.xxxxxx.net/preprod/trade:8dda0bde
+reg.xxxxxx.net/preprod/sms:1dbbc1d3
